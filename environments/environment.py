@@ -113,11 +113,11 @@ class AtariEnvironment(Environment):
       self.lives = current_lives
 
     if self.use_cumulated_reward:
-      return self.preprocess(screen, terminal), cumulated_reward, terminal, {}
+      return self.preprocess(screen), cumulated_reward, terminal, {}
     else:
-      return self.preprocess(screen, terminal), reward, terminal, {}
+      return self.preprocess(screen), reward, terminal, {}
 
-  def preprocess(self, raw_screen, terminal):
+  def preprocess(self, raw_screen):
     y = 0.2126 * raw_screen[:, :, 0] + 0.7152 * raw_screen[:, :, 1] + 0.0722 * raw_screen[:, :, 2]
     y = y.astype(np.uint8)
     y_screen = imresize(y, self.observation_dims)
